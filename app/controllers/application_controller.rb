@@ -1,6 +1,8 @@
 class ApplicationController < Sinatra::Base
     configure do 
         set :views, 'app/views'
+        # enable :sessions
+        # set :session_secret, 'secret123'
     end
     get '/' do
         <<-HTML
@@ -10,7 +12,7 @@ class ApplicationController < Sinatra::Base
     end 
 
     get '/signup' do 
-        erb :signup 
+        erb :signup
     end
 
     
