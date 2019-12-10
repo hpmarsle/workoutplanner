@@ -3,16 +3,24 @@ class ApplicationController < Sinatra::Base
         set :views, 'app/views'
     end
     get '/' do
-        "<h1>Hello World</h2>"
-        '<p><a>Login</a> or <a>Signup</a></p>'
+        <<-HTML
+            <h1>Hello World</h2>
+            <p><a href='/login'>Login</a> or <a href='signup'>Signup</a></p>
+        HTML
     end 
 
     get '/signup' do 
         erb :signup 
     end
+
     
     post '/signup' do 
         byebug
 
+    end
+
+    get '/login' do 
+
+        erb :login
     end
 end
