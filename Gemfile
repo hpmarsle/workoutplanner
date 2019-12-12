@@ -9,8 +9,10 @@ gem 'activerecord', require: 'active_record'
 gem 'sinatra-activerecord', require: 'sinatra/activerecord'
 gem 'sqlite3'
 gem 'rake'
-gem 'pry'
 gem 'sinatra'
+gem 'bcrypt'
+gem 'tux'
+gem 'require_all'
 
 group :text, :development do 
     gem 'pry'
