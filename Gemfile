@@ -14,7 +14,7 @@ gem 'bcrypt'
 gem 'tux'
 gem 'require_all'
 
-group :text, :development do 
+group :test, :development do 
     gem 'pry'
     gem 'byebug'
 end
