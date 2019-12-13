@@ -1,28 +1,32 @@
+require 'pry'
 class ApplicationController < Sinatra::Base
     configure do 
         set :views, 'app/views'
-        # enable :sessions
-        # set :session_secret, 'secret123'
+        enable :sessions
+        set :session_secret, 'secret123'
     end
     get '/' do
-        <<-HTML
-            <h1>Hello World</h2>
-            <p><a href='/login'>Login</a> or <a href='signup'>Signup</a></p>
-        HTML
+        erb :home
     end 
 
-    get '/signup' do 
-        erb :signup
+    helpers do 
+       def logged_in?
+        !!current_user
+       end 
+      
+        def current_user
+          @current_user ||= User.find_by(username: session[:username]) if session[:username]
+        end
+
+        def login(username, password)
+            # binding.pry
+            user = User.find_by(username: username)
+            if user && user.authenticate(password)
+                session[:username] = user.username
+            else
+                redirect '/login'
+            end
+        end 
     end
 
-    
-    post '/signup' do 
-        byebug
-
-    end
-
-    get '/login' do 
-
-        erb :login
-    end
 end
