@@ -1,11 +1,8 @@
 require 'bundler/setup'
 Bundler.require
 
-require_relative '../app/models/user.rb'
-require_relative '../app/controllers/application_controller.rb'
-require_relative '../app/controllers/users_controller.rb'
+# require_relative '../app/models/user.rb'
+# require_relative '../app/controllers/application_controller.rb'
+# require_relative '../app/controllers/users_controller.rb'
 
-ActiveRecord::Base.establish_connection(
-    :adapter => "sqlite3",
-    :database => "db/#{ENV['SINATRA']}.sqlite"
-)
+require_all 'app'
