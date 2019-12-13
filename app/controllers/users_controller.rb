@@ -7,13 +7,22 @@ class UsersController < ApplicationController
     end
 
     
-    # post '/signup' do 
-    #     byebug
-
-    # end
+    post '/signup' do 
+        @user = User.new(params)
+        @user.save
+        session[:user_id] = @user.id
+        login(params[:username], params[:password])
+        redirect '/exercises'
+    end
+       
 
     get '/login' do 
 
         erb :'user/login'
     end
+    post '/login' do 
+        # binding.pry
+        login(params[:username],params[:password])
+        redirect '/exercises'
+    end 
 end
