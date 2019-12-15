@@ -13,6 +13,7 @@ gem 'sinatra'
 gem 'bcrypt'
 gem 'tux'
 gem 'require_all'
+gem 'tty-tree', '~> 0.3.0'
 
 group :test, :development do 
     gem 'pry'
