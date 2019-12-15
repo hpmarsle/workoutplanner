@@ -3,7 +3,6 @@ class UsersController < ApplicationController
     get '/signup' do 
         erb :'user/signup'
     end
-
     
     post '/signup' do 
         @user = User.new(params)
@@ -13,8 +12,7 @@ class UsersController < ApplicationController
         else
             redirect '/signup'
         end
-    end
-       
+    end  
 
     get '/login' do 
         erb :'user/login'
@@ -25,4 +23,9 @@ class UsersController < ApplicationController
         login(params[:username],params[:password])
         redirect '/exercises'
     end 
+
+    get '/logout' do
+        session.clear
+        redirect to '/'
+    end
 end
