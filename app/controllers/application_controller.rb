@@ -5,6 +5,7 @@ class ApplicationController < Sinatra::Base
         enable :sessions
         set :session_secret, 'secret123'
     end
+    
     get '/' do
         erb :home
     end 

@@ -1,1 +1,7 @@
 <h1> <%= @exercise.name %> </h1>
+
+<a href='/exercises/<%=@exercise.id%>/edit'>Edit</a>
+<form action="/exercises/<%=@exercise.id%>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete">
+</form>

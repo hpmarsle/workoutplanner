@@ -35,20 +35,31 @@ class ExercisesController < ApplicationController
     end
 
     get '/exercises/:id/edit' do 
-
-        erb :edit
+        @exercise = Exercise.find_by_id(params[:id])
+        erb :'exercise/edit'
     end 
 
-    patch '/aricles/:id' do 
+    patch '/exercises/:id' do 
+        @exercise = Exercise.find_by_id(params[:id])
+        @exercise.name = params[:name]
+        @exercise.muscle_group = params[:muscle_group]
+        @exercise.length_of_time = params[:length_of_time]
+        @exercise.weight = params[:weight]
+        @exercise.sets = params[:sets]
+        @exercise.reps = params[:reps]
+        @exercise.notes = params[:notes]
+        @exercise.save
+        redirect to "/exercises/#{@exercise.id}"
+    end
+
+    put '/exercises/:id' do 
 
     end
 
-    put '/articles/:id' do 
-
-    end
-
-    delete '/articles/:id' do 
-
+    delete '/exercises/:id' do 
+        @exercise = Exercise.find_by_id(params[:id])
+        @exercise.delete
+        redirect to '/exercises'
     end
 
     private

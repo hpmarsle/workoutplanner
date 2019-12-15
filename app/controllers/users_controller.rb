@@ -19,7 +19,6 @@ class UsersController < ApplicationController
     end
 
     post '/login' do 
-        # binding.pry
         login(params[:username],params[:password])
         redirect '/exercises'
     end 

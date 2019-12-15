@@ -1,0 +1,20 @@
+<h1>Edit the exercise here</h1>
+<form method="POST" action="/exercises/<%=@exercise.id%>">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <p><label for="name">Name:</label>
+    <input type="text" name="name" value="<%=@exercise.name%>"></p>
+    <p><label for="muscle_group">Muscle Group:</label>
+    <input type="text" name="muscle_group" value="<%=@exercise.muscle_group%>"></p>
+    <p><label for="length_of_time">Length of Time:</label>
+    <input type="text" name="length_of_time" value="<%=@exercise.length_of_time%>"></p>
+    <p><label for="weight">Weight:</label>
+    <input type="number" name="weight" value="<%=@exercise.weight%>"></p>
+    <p><label for="sets">Sets:</label>
+    <input type="number" name="sets" value="<%=@exercise.sets%>"></p>
+    <p><label for="reps">Reps:</label>
+    <input type="number" name="reps" value="<%=@exercise.reps%>"></p>
+    <p><label for="notes">Notes:</label>
+    <input type="text" name="notes" value="<%=@exercise.notes%>"></p>
+    <input type="submit" value="submit">
+</form>
+ 

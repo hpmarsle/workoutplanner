@@ -1,11 +1,13 @@
 <h1>Here are your exercises</h1>
 
 <% @exercises.each do |e|%>
-    <p><%=e.name%>
-    <br><%=e.muscle_group%>  
-    <br><%=e.length_of_time%>
-    <br><%=e.weight%>
-    <br><%=e.sets%>
-    <br><%=e.reps%>
-    <br><%=e.notes%></p>
+    <p><strong><%=e.name%></strong>
+    <br>Muscle Group:<%=e.muscle_group%>  
+    <br>Time:<%=e.length_of_time%>
+    <br>Weight:<%=e.weight%>
+    <br>Sets:<%=e.sets%>
+    <br>Reps:<%=e.reps%>
+    <br>Notes:<%=e.notes%>
+    </br><a href="/exercises/<%=e.id%>/edit">Edit</a>
+    </p>
 <% end %>
