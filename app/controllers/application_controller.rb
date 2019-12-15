@@ -5,9 +5,13 @@ class ApplicationController < Sinatra::Base
         enable :sessions
         set :session_secret, 'secret123'
     end
-    
+
     get '/' do
-        erb :home
+        if logged_in?
+            redirect '/exercises'
+        else
+            erb :home
+        end
     end 
 
     helpers do 
@@ -20,10 +24,9 @@ class ApplicationController < Sinatra::Base
         end
 
         def login(username, password)
-            # binding.pry
-            user = User.find_by(username: username)
-            if user && user.authenticate(password)
-                session[:user_id] = user.id
+            @user = User.find_by(username: username)
+            if @user && @user.authenticate(password)
+                session[:user_id] = @user.id
             else
                 redirect '/login'
             end

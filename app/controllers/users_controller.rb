@@ -8,19 +8,28 @@ class UsersController < ApplicationController
         @user = User.new(params)
         if @user.save
             login(params[:username], params[:password])
-            erb :'exercise/new'
+            redirect '/exercises'
         else
             redirect '/signup'
         end
     end  
 
     get '/login' do 
-        erb :'user/login'
+        if logged_in?
+            redirect '/exercises'
+        else 
+            erb :'user/login'
+        end
     end
 
     post '/login' do 
-        login(params[:username],params[:password])
-        redirect '/exercises'
+        @user = User.find(login(params[:username],params[:password]))
+        if logged_in?
+            redirect '/exercises'
+        else
+            @failure = "Matching username and password not found"
+            redirect '/login'
+        end
     end 
 
     get '/logout' do

@@ -1,42 +1,52 @@
 class ExercisesController < ApplicationController
     get '/exercises' do 
         if logged_in?
-            if current_user.exercises
-                @exercises = current_user.exercises
-                erb :'/exercise/index'
-            else 
-                redirect '/exercises/new'
-            end
+            @exercises = current_user.exercises
+            erb :'/exercise/index'
         else 
             redirect '/login'
-        end
-        
+        end  
     end
 
     get '/exercises/new' do 
-
-        erb :'exercise/new'
+        if logged_in?
+            erb :'exercise/new'
+        else
+            redirect '/login'
+        end
     end
 
     post '/exercises' do 
-        exercise = Exercise.new(exercise_params)
-        if exercise.save #1:12:44 in authenticAtion yt video
-            current_user.exercises << exercise
-            redirect "/exercises/#{current_user.id}" #user.exercises.build()? save the user
-        else
-            puts "ooohhhh nooooooooooooooo"
+        if logged_in?
+            exercise = Exercise.new(exercise_params)
+            if exercise.save #1:12:44 in authenticAtion yt video
+                current_user.exercises << exercise
+                redirect "/exercises/#{exercise.id}" #user.exercises.build()? save the user
+            else
+                redirect '/exercises/new'
+            end
+        else 
+            redirect to '/login'
         end
-        # current_user.exercises << @exercise
     end
 
     get '/exercises/:id' do 
         @exercise = Exercise.find_by_id(params[:id])
-        erb :'exercise/show'
+        if logged_in? && current_user.exercises.include?(@exercise)
+           
+            erb :'exercise/show'
+        else
+            erb :'exercise/warning'
+        end
     end
 
     get '/exercises/:id/edit' do 
         @exercise = Exercise.find_by_id(params[:id])
-        erb :'exercise/edit'
+        if logged_in? && current_user.exercises.include?(@exercise)
+            erb :'exercise/edit'
+        else
+            erb :'exercise/warning'
+        end
     end 
 
     patch '/exercises/:id' do 
@@ -52,9 +62,9 @@ class ExercisesController < ApplicationController
         redirect to "/exercises/#{@exercise.id}"
     end
 
-    put '/exercises/:id' do 
+    # put '/exercises/:id' do 
 
-    end
+    # end
 
     delete '/exercises/:id' do 
         @exercise = Exercise.find_by_id(params[:id])
