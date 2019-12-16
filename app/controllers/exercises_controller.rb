@@ -19,9 +19,9 @@ class ExercisesController < ApplicationController
     post '/exercises' do 
         if logged_in?
             exercise = Exercise.new(exercise_params)
-            if exercise.save #1:12:44 in authenticAtion yt video
+            if exercise.save
                 current_user.exercises << exercise
-                redirect "/exercises/#{exercise.id}" #user.exercises.build()? save the user
+                redirect "/exercises/#{exercise.id}" 
             else
                 redirect '/exercises/new'
             end
