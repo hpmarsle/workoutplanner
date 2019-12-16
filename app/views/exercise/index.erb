@@ -1,13 +1,21 @@
-<h1>Here are your exercises</h1>
+<h1>Welcome <%=current_user.username%></h1>
 
-<% @exercises.each do |e|%>
-    <p><strong><%=e.name%></strong>
-    <br>Muscle Group:<%=e.muscle_group%>  
-    <br>Time:<%=e.length_of_time%>
-    <br>Weight:<%=e.weight%>
-    <br>Sets:<%=e.sets%>
-    <br>Reps:<%=e.reps%>
-    <br>Notes:<%=e.notes%>
-    </br><a href="/exercises/<%=e.id%>/edit">Edit</a>
-    </p>
+<%if @exercises.empty?%>
+    <h2>You have no exercises in your workout planner.</h2>
+<%else%>
+    <h2>Here are your exercises</h2>
+
+    <% @exercises.each do |e|%>
+        <p><strong><a href="/exercises/<%=e.id%>"><%=e.name%></a></strong>
+        <br>Muscle Group:<%=e.muscle_group%>  
+        <br>Time:<%=e.length_of_time%>
+        <br>Weight:<%=e.weight%>
+        <br>Sets:<%=e.sets%>
+        <br>Reps:<%=e.reps%>
+        <br>Notes:<%=e.notes%>
+        </br><a href="/exercises/<%=e.id%>/edit">Edit</a>
+        </p>
+    <% end %>
 <% end %>
+<a href='exercises/new'>New Exercise</a>
+<a href='/logout'>Log Out</a>
