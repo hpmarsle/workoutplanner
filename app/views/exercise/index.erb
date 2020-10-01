@@ -7,12 +7,12 @@
 
     <% @exercises.each do |e|%>
         <p><strong><a href="/exercises/<%=e.id%>"><%=e.name%></a></strong>
-        <br>Muscle Group:<%=e.muscle_group%>  
-        <br>Time:<%=e.length_of_time%>
-        <br>Weight:<%=e.weight%>
-        <br>Sets:<%=e.sets%>
-        <br>Reps:<%=e.reps%>
-        <br>Notes:<%=e.notes%>
+        <br>Muscle Group:  <%=e.muscle_group%>  
+        <br>Time:  <%=e.length_of_time%>
+        <br>Weight:  <%=e.weight%>
+        <br>Sets:  <%=e.sets%>
+        <br>Reps:  <%=e.reps%>
+        <br>Notes:  <%=e.notes%>
         </br><a href="/exercises/<%=e.id%>/edit">Edit</a>
         </p>
     <% end %>
